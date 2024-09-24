@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mrunali - Gaming Zone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            perspective: 1000px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 3D Moving Background */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #002f4b, #dc4225);
+            background-size: 200% 200%;
+            animation: moveGradient 8s ease infinite;
+            z-index: -1;
+        }
+
+        /* 3D Cube Effect (Optional) */
+        /* Uncomment the following HTML and CSS if you want to include the cube */
+
+        /*
+        .cube {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: rotateX(45deg) rotateY(45deg);
+            animation: rotateCube 8s infinite linear;
+        }
+
+        .cube div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cube div:nth-child(1) {
+            transform: rotateY(0deg) translateZ(100px);
+        }
+
+        .cube div:nth-child(2) {
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .cube div:nth-child(3) {
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        .cube div:nth-child(4) {
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .cube div:nth-child(5) {
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .cube div:nth-child(6) {
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        */
+
+        @keyframes rotateCube {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        @keyframes moveGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80px;
+            background-color: rgba(36, 35, 35, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .left {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7fcccc;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: lavender;
+            font-size: 1.1rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #7fcccc;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        main hr {
+            border: 0;
+            background: rgb(54, 53, 53);
+            height: 1.4px;
+            margin: 60px 84px;
+        }
+
+        .left {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #7fcccc;
+        }
+
+        .firstSection {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            margin: 130px 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .firstSection > .leftSection {
+            width: 45%;
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        .firstSection > .leftSection div {
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+
+        .firstSection > .rightSection {
+            width: 45%;
+            text-align: center;
+        }
+
+        .firstSection .rightSection img {
+            width: 80%;
+            border-radius: 15px;
+            transition: transform 0.5s ease-in-out;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .firstSection .rightSection img:hover {
+            transform: scale(1.05);
+        }
+
+        .purple {
+            color: rgb(127, 204, 237);
+        }
+
+        #element {
+            color: #ffde59;
+            font-weight: bold;
+        }
+
+        .secondSection {
+            max-width: 80vw;
+            margin: auto;
+            height: 80vh;
+            animation: slideInUp 1.5s ease-in-out;
+        }
+
+        .secondSection h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: #ffde59;
+        }
+
+        .secondSection h1::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: #ffde59;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .secondSection .Box {
+            background: #1a1a1a;
+            width: 100%;
+            height: 300px;
+            margin: 56px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 20%;
+            padding: 10px;
+            color: white;
+        }
+
+        .vertical img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .vertical-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .vertical-desc {
+            font-size: 0.9rem;
+            color: bisque;
+        }
+
+        /* Image Gallery Styles */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 0;
+        }
+
+        .image-gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            background: #1a1a1a;
+            padding: 40px 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 60px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffde59;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .contact-section h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: #ffde59;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-section input,
+        .contact-section textarea {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-section button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffde59;
+            color: #1a1a1a;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-section button:hover {
+            background-color: #e6c850;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .firstSection {
+                flex-direction: column;
+                margin: 80px 0;
+            }
+
+            .firstSection > .leftSection,
+            .firstSection > .rightSection {
+                width: 80%;
+            }
+
+            .vertical {
+                width: 45%;
+                margin-bottom: 20px;
+            }
+
+            .image-gallery img {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .left {
+                font-size: 1.2rem;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .image-gallery img {
+                width: 100%;
+            }
+
+            .contact-section {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">Mrunali's Gaming Zone</div>
+            <div class="right">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#tournaments">Tournaments</a></li>
+                    <li><a href="#winning-package">Winning Package</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#Gamming Shop">Gamming Shop</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="firstSection" id="home">
+            <div class="leftSection">
+                Hi, My name is <span class="purple">Mrunali </span>
+                <div>and this is my Gaming Zone</div>
+                <span id="element"></span>
+            </div>
+            <div class="rightSection">
+                <img src="1600w-TOClzfKQMvU.webp" alt="Gaming Setup">
+            </div>
+        </section>
+
+        <!-- Optional 3D Cube -->
+        <!--
+        <div class="cube">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        -->
+
+        <!-- Image Gallery Section -->
+        <section class="image-gallery" id="tournaments">
+            <img src="T1.jpg" alt="Gaming Tournament 1">
+            <img src="T2.jpg" alt="Gaming Tournament 2">
+            <img src="T3.jpg" alt="Gaming Tournament 3">
+            <img src="T4.jpg" alt="Gaming Tournament 4">
+            <!-- Add more images as needed -->
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <h2>Contact Us</h2>
+            <form action="your-action-url" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+        <!-- Gaming Shop Section -->
+    <section class="shop-section" id="Gamming Shop">
+        <h1>Welcome to the Gaming Shop</h1>
+        <div class="image-gallery">
+            <img src="lap.jpg" alt="Gaming Product 1">
+            <img src="key.jpg" alt="Gaming Product 2">
+            <img src="mou.jpg" alt="Gaming Product 3">
+            <img src="hea.jpg" alt="Gaming Product 4">
+            <!-- Add more images as needed -->
+        </div>
+    </section>
+    </main>
+</body>
+
+</html>
